@@ -48,8 +48,8 @@ const UpdateForm = () => {
             console.log("Movie-->", movie) //movie is the movie object
             //res.data
             //build a new array of items
-            //loop through  old array of items--find the item that matches what we updated
-            //update that item in your nrew array
+            //loop through  old array of items--find the item that matches what we updated .map/.filter??
+            //update that item in your new array--> array.push?
             const updatedMovie = movie.filter(item => `${item.id}` !== res.data)
             setMovie(updatedMovie)
             push('/movies/:id')
