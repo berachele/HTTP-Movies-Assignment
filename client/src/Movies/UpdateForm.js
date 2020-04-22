@@ -18,7 +18,7 @@ const UpdateForm = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/api/movies/${id}`)
         .then(res => {
-            console.log({res})
+            // console.log({res})
             //res.data
             setMovie(res.data)
         })
@@ -43,12 +43,26 @@ const UpdateForm = () => {
     const submitForm = e => {
         e.preventDefault()
         //axios.put will go here
+        axios.put(`http://localhost:5000/api/movies/${id}`, movie)
+        .then(res => {
+            console.log("Movie-->", movie) //movie is the movie object
+            //res.data
+            //build a new array of items
+            //loop through  old array of items--find the item that matches what we updated
+            //update that item in your nrew array
+            const updatedMovie = movie.filter(item => `${item.id}` !== res.data)
+            setMovie(updatedMovie)
+            push('/movies/:id')
+        })
+        .catch(err => {
+            console.log("PUT Error", err)
+        })
     }
 
     return(
         <div>
             <h2>Update Movie</h2>
-            <form onSubmit="">
+            <form onSubmit={submitForm}>
                 <input 
                 type="text"
                 name="title"

@@ -31,7 +31,7 @@ function Movie({ addToSavedList }) {
       <MovieCard movie={movie} />
 
       <div className="save-button" onClick={saveMovie}>
-        Save
+        Save to List
       </div>
     </div>
   );
