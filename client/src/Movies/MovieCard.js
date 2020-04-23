@@ -1,6 +1,6 @@
 import React from 'react';
 import {useHistory} from "react-router-dom"
-import axios from "axios"
+
 
 const MovieCard = props => {
   const { id, title, director, metascore, stars } = props.movie;

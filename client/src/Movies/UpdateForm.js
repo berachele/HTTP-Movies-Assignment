@@ -10,7 +10,7 @@ const initialMovie = {
     stars: []
 }
 
-const UpdateForm = () => {
+const UpdateForm = props => {
     const {push} = useHistory()
     const [movie, setMovie] = useState(initialMovie)
     const {id} = useParams()
@@ -41,18 +41,14 @@ const UpdateForm = () => {
     }
 
     const submitForm = e => {
+        console.log("!!!!!!!", props.movies)
         e.preventDefault()
-        //axios.put will go here
         axios.put(`http://localhost:5000/api/movies/${id}`, movie)
         .then(res => {
-            console.log("Movie-->", movie) //movie is the movie object
+            console.log(res)
             //res.data
-            //build a new array of items
-            //loop through  old array of items--find the item that matches what we updated .map/.filter??
-            //update that item in your new array--> array.push?
-            const updatedMovie = movie.filter(item => `${item.id}` !== res.data)
-            setMovie(updatedMovie)
-            push('/movies/:id')
+            setMovie(res.data)
+            push('/')
         })
         .catch(err => {
             console.log("PUT Error", err)
