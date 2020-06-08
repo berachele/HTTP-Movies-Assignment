@@ -1,7 +1,11 @@
 import React from 'react';
+import {useHistory} from "react-router-dom"
+
 
 const MovieCard = props => {
-  const { title, director, metascore, stars } = props.movie;
+  const { id, title, director, metascore, stars } = props.movie;
+  const {push} = useHistory()
+
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -18,6 +22,9 @@ const MovieCard = props => {
           {star}
         </div>
       ))}
+      <div className="update-button" onClick={() => push(`/update-movie/${id}`)}>
+        Update Movie
+      </div>
     </div>
   );
 };
